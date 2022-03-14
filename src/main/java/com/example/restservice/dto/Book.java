@@ -29,6 +29,12 @@ public class Book {
 		this.language = language;
 		this.editorial = editorial;
 	}
+	
+	public Book (String id, double price, String title) {
+		this.id = id;
+		this.price = price;
+		this.title = title;
+	}
 
 	public String getId() {
 		return id;
@@ -42,48 +48,24 @@ public class Book {
 		return price;
 	}
 
-	public void setPrice(double price) {
-		this.price = price;
-	}
-
 	public String getTitle() {
 		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
 	}
 
 	public String getAuthor() {
 		return author;
 	}
 
-	public void setAuthor(String author) {
-		this.author = author;
-	}
-
 	public String getCategory() {
 		return category;
-	}
-
-	public void setCategory(String category) {
-		this.category = category;
 	}
 
 	public String getLanguage() {
 		return language;
 	}
 
-	public void setLanguage(String language) {
-		this.language = language;
-	}
-
 	public String getEditorial() {
 		return editorial;
-	}
-
-	public void setEditorial(String editorial) {
-		this.editorial = editorial;
 	}
 
 }

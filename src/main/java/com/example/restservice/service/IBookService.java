@@ -9,7 +9,7 @@ public interface IBookService {
 
 	public List<Book> getBook();
 	public Book post_put(Book b);
-	public void delete(String expID);
-	public Optional<Book> getByKey (String expId);
+	public void delete(String bookId);
+	public Optional<Book> getByKey (String bookId);
 	
 }

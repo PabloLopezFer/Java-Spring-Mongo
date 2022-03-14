@@ -32,7 +32,9 @@ public class BookController {
 	
 	@PostMapping
 	public ResponseEntity<Book> post(@RequestBody Book b){
-		b.setId(UUID.randomUUID().toString());
+		if(b.getId()==null) {
+			b.setId(UUID.randomUUID().toString());
+		}
 		
 		if(service.getByKey(b.getId()).isPresent()) {
 			return ResponseEntity.status(HttpStatus.CONFLICT).body(null);
@@ -44,7 +46,7 @@ public class BookController {
 		}
 	}
 	
-	@PutMapping
+	@PutMapping(value="{id}")
 	public ResponseEntity<Book> put(@RequestBody Book b){
 		if(!service.getByKey(b.getId()).isPresent()) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
