@@ -3,69 +3,87 @@ package com.example.restservice.dto;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+/**
+ * Book entity.
+ */
 @Document("Book")
 public class Book {
 
-	@Id
-	private String id;
-	private double price;
-	private String title;
-	private String author;
-	private String category;
-	private String language;
-	private String editorial;
+  @Id
+  private String id;
+  private double price;
+  private String title;
+  private String author;
+  private String category;
+  private String language;
+  private String editorial;
 
-	public Book() {
-		
-	}
-	
-	public Book(String id, double price, String title, String author, 
-			String category, String language, String editorial) {
-		this.id = id;
-		this.price = price;
-		this.title = title;
-		this.author = author;
-		this.category = category;
-		this.language = language;
-		this.editorial = editorial;
-	}
-	
-	public Book (String id, double price, String title) {
-		this.id = id;
-		this.price = price;
-		this.title = title;
-	}
+  /**
+   * Book constructor.
+   */
+  public Book() {}
 
-	public String getId() {
-		return id;
-	}
+  /**
+   * Book constructor.
+   */
+  public Book(String id, double price, String title, String author, 
+      String category, String language, String editorial) {
+    this.id = id;
+    this.price = price;
+    this.title = title;
+    this.author = author;
+    this.category = category;
+    this.language = language;
+    this.editorial = editorial;
+  }
 
-	public void setId(String id) {
-		this.id = id;
-	}
+  /**
+   * Book constructor.
+   */
+  public Book(String id, double price, String title) {
+    this.id = id;
+    this.price = price;
+    this.title = title;
+  }
 
-	public double getPrice() {
-		return price;
-	}
+  /**
+   * Book constructor.
+   */
+  public Book(double price, String title) {
+    this.price = price;
+    this.title = title;
+  }
 
-	public String getTitle() {
-		return title;
-	}
+  public String getId() {
+    return id;
+  }
 
-	public String getAuthor() {
-		return author;
-	}
+  public void setId(String id) {
+    this.id = id;
+  }
 
-	public String getCategory() {
-		return category;
-	}
+  public double getPrice() {
+    return price;
+  }
 
-	public String getLanguage() {
-		return language;
-	}
+  public String getTitle() {
+    return title;
+  }
 
-	public String getEditorial() {
-		return editorial;
-	}
+  public String getAuthor() {
+    return author;
+  }
+
+  public String getCategory() {
+    return category;
+  }
+
+  public String getLanguage() {
+    return language;
+  }
+
+  public String getEditorial() {
+    return editorial;
+  }
 
 }

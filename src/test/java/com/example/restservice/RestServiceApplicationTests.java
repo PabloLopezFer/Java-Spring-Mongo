@@ -2,7 +2,6 @@ package com.example.restservice;
 
 import java.io.IOException;
 import java.net.Socket;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -21,39 +20,39 @@ import org.testcontainers.utility.DockerImageName;
 @ExtendWith(SpringExtension.class)
 class RestServiceApplicationTests {
 
-	@Value("${spring.data.mongodb.uri}")
-    private static String uri;
+  @Value("${spring.data.mongodb.uri}")
+  private static String uri;
 
-    @Value("${spring.data.mongodb.database}")
-    private static String database;
+  @Value("${spring.data.mongodb.database}")
+  private static String database;
     
-    @Container
-  	public static MongoDBContainer container = new MongoDBContainer(DockerImageName.parse("mongo:latest"));
+  @Container
+  public static MongoDBContainer container = 
+      new MongoDBContainer(DockerImageName.parse("mongo:latest"));
 
-    @DynamicPropertySource
-    public static void mongoDbProperties(DynamicPropertyRegistry registry) {
-        registry.add("spring.data.mongodb.uri", container::getReplicaSetUrl);
-    }
+  @DynamicPropertySource
+  public static void mongoDbProperties(DynamicPropertyRegistry registry) {
+    registry.add("spring.data.mongodb.uri", container::getReplicaSetUrl);
+  }
 
-    @BeforeEach
-    public void init() {
-        container.start();
-    }
+  @BeforeEach
+  public void init() {
+    container.start();
+  }
 
-    @Test
-    public void test01_port() {
-        this.checkPortAvailability(container);
-    }
+  @Test
+  public void test01_port() {
+    this.checkPortAvailability(container);
+  }
 
-    private void checkPortAvailability(MongoDBContainer container) {
-        Socket socket;
-        try {
-            socket = new Socket(container.getContainerIpAddress(), container.getFirstMappedPort());
-            socket.close();
-        }
-        catch(IOException e) {
-            e.printStackTrace();
-        }
+  private void checkPortAvailability(MongoDBContainer container) {
+    Socket socket;
+    try {
+      socket = new Socket(container.getContainerIpAddress(), container.getFirstMappedPort());
+      socket.close();
+    } catch (IOException e) {
+      e.printStackTrace();
     }
+  }
 
 }
