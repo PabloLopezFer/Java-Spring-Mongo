@@ -1,6 +1,5 @@
 package com.example.restservice.webtestclient;
 
-
 import com.example.restservice.dto.Book;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
@@ -36,7 +35,7 @@ public class WebClientDemoApplicationTests {
 
   @Value("${spring.data.mongodb.database}")
   private static String database;
-    
+
   @Container
   public static MongoDBContainer container = 
       new MongoDBContainer(DockerImageName.parse("mongo:latest"));
@@ -45,7 +44,7 @@ public class WebClientDemoApplicationTests {
   public static void mongoDbProperties(DynamicPropertyRegistry registry) {
     registry.add("spring.data.mongodb.uri", container::getReplicaSetUrl);
   }
-    
+
   @BeforeAll
   public static void init() {
     container.start();
@@ -56,7 +55,7 @@ public class WebClientDemoApplicationTests {
   public void test01_post() {
     Book book = new Book("harryP", 20, "Cien años de soledad");
     Book book2 = new Book(20, "");
-    
+
     webTestClient.post().uri("/books")
         .contentType(MediaType.APPLICATION_JSON)
         .accept(MediaType.APPLICATION_JSON)
@@ -66,7 +65,7 @@ public class WebClientDemoApplicationTests {
         .expectHeader().contentType(MediaType.APPLICATION_JSON)
         .expectBody()
         .jsonPath("$.id").isNotEmpty();
-    
+
     webTestClient.post().uri("/books")
         .contentType(MediaType.APPLICATION_JSON)
         .accept(MediaType.APPLICATION_JSON)
@@ -119,7 +118,7 @@ public class WebClientDemoApplicationTests {
         .consumeWith(response ->
             Assertions.assertThat(response.getResponseBody()).isNotNull());
   }
-  
+
   @Test
   @Order(4)
   public void test04_put() {
@@ -148,7 +147,6 @@ public class WebClientDemoApplicationTests {
         .expectBody()
         .jsonPath("$.id").isEqualTo("harryP");
   }
-
 
   @Test
   @Order(5)
